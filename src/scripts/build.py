@@ -2,6 +2,20 @@
 """Assembles the static pages from templates/*.html fragments with a shared header & footer.
 Run: python3 scripts/build.py   (writes index.html, ar/index.html, publications.html, ...)"""
 import os, re, json, datetime, time
+ICONS = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'icons.json')))
+ICONS['mail'] = {'t': 'Email', 'vb': '0 0 24 24', 'd': 'M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.4V18h16V7.4l-8 5.3-8-5.3zM4.9 7l7.1 4.7L19.1 7H4.9z'}
+LINKS = [('scholar', 'https://scholar.google.com/citations?view_op=search_authors&mauthors=Waeal+Obidallah'), ('orcid', 'https://orcid.org/0000-0002-5086-3950'), ('scopus', 'https://www.scopus.com/authid/detail.uri?authorId=55838260600'), ('linkedin', 'https://www.linkedin.com/in/waealobidallah/'), ('x', 'https://x.com/waealo'), ('github', 'https://github.com/waealobidallah'), ('mail', 'mailto:waealobidallah@gmail.com')]
+AR_T = {'scholar': 'Google Scholar', 'orcid': 'ORCID', 'scopus': 'Scopus', 'linkedin': 'LinkedIn', 'x': 'X', 'github': 'GitHub', 'mail': 'البريد الإلكتروني'}
+
+def social(lang, variant='light', keys=None):
+    out = []
+    for k, url in LINKS:
+        if keys and k not in keys: continue
+        ic = ICONS[k]; t = AR_T[k] if lang == 'ar' else ic['t']
+        ext = '' if k == 'mail' else ' target="_blank" rel="noopener me"'
+        out.append(f'<a class="soc" href="{url}"{ext} aria-label="{t}" title="{t}"><svg viewBox="{ic["vb"]}" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="{ic["d"]}"/></svg><span>{t}</span></a>')
+    return f'<div class="social {variant}">' + ''.join(out) + '</div>'
+
 STAMP = str(int(time.time()))
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 T = os.path.join(ROOT, 'templates')
@@ -43,11 +57,12 @@ def foot(lang, base):
         t = f'<div>© <span data-year>2026</span> د. وائل جمعة عبيدالله · آخر تحديث {datetime.date.today():%B %Y}</div>'
     else:
         t = f'<div>© <span data-year>2026</span> Waeal J. Obidallah · Last updated {datetime.date.today():%B %Y}</div>'
-    links = '<div><a href="https://scholar.google.com/citations?user=waealobidallah" target="_blank" rel="noopener">Google Scholar</a> · <a href="https://www.linkedin.com/in/waealobidallah/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://orcid.org/0000-0002-5086-3950" target="_blank" rel="noopener">ORCID</a> · <a href="https://x.com/waealo" target="_blank" rel="noopener">X</a></div>'
+    links = social(lang, 'light compact')
     return f'<footer><div class="wrap">{t}{links}</div></footer><script src="{base}assets/js/site.js?v={STAMP}"></script></body></html>'
 
 def build(src, out, lang, title, desc, base, alt):
     body = open(os.path.join(T, src), encoding='utf-8').read()
+    body = body.replace('<!--SOCIAL-->', social(lang, 'onnavy')).replace('<!--SOCIAL-LIGHT-->', social(lang, 'light'))
     html = head(lang, title, desc, base, alt) + nav(lang, base, alt) + body + foot(lang, base)
     p = os.path.join(ROOT, out); os.makedirs(os.path.dirname(p), exist_ok=True)
     open(p, 'w', encoding='utf-8').write(html); print('wrote', out, len(html))
