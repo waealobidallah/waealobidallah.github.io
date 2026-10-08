@@ -225,26 +225,9 @@
   const cap = q('.logo-caption');
   if (cap) qa('.logo').forEach(l => { const on = () => { qa('.logo').forEach(x => x.classList.toggle('on', x === l)); cap.innerHTML = `<b>${l.dataset.name}</b> — ${l.dataset.role}`; }; l.addEventListener('mouseenter', on); l.addEventListener('click', on); l.addEventListener('focus', on); });
 
-  // impact stats: reveal, flip, mobile carousel with autoplay
-  const stats = q('.stats');
-  if (stats) {
-    const cards = qa('.stat', stats);
-    const sio = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); sio.unobserve(e.target); } }), { threshold: .3 }) : null;
-    cards.forEach(c => { sio ? sio.observe(c) : c.classList.add('in'); c.addEventListener('click', e => { if (e.target.closest('a')) return; c.classList.toggle('flip'); }); c.setAttribute('tabindex', '0'); c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.classList.toggle('flip'); } }); });
-    const dots = q('.stats-dots'); let idx = 0, timer = null, touched = false;
-    if (dots) {
-      dots.innerHTML = cards.map((_, k) => `<button role="tab" aria-label="${k + 1}"></button>`).join('');
-      const rtl = getComputedStyle(stats).direction === 'rtl';
-      const go = k => { idx = (k + cards.length) % cards.length; const c = cards[idx]; stats.scrollTo({ left: (c.offsetLeft - (stats.clientWidth - c.clientWidth) / 2) * 1, behavior: 'smooth' }); };
-      const sync = () => { const mid = stats.scrollLeft + stats.clientWidth / 2; let best = 0, d = 1e9; cards.forEach((c, k) => { const cm = c.offsetLeft + c.clientWidth / 2; const dd = Math.abs(cm - mid); if (dd < d) { d = dd; best = k; } }); idx = best; qa('button', dots).forEach((b, k) => b.classList.toggle('on', k === idx)); };
-      qa('button', dots).forEach((b, k) => b.addEventListener('click', () => { touched = true; clearInterval(timer); go(k); }));
-      stats.addEventListener('scroll', sync, { passive: true }); sync();
-      ['touchstart', 'pointerdown', 'wheel'].forEach(ev => stats.addEventListener(ev, () => { touched = true; clearInterval(timer); }, { passive: true }));
-      const mq = matchMedia('(max-width:700px)');
-      const start = () => { clearInterval(timer); if (mq.matches && !touched && !matchMedia('(prefers-reduced-motion:reduce)').matches) timer = setInterval(() => go(idx + 1), 3800); };
-      start(); mq.addEventListener ? mq.addEventListener('change', start) : mq.addListener(start);
-    }
-  }
+  // impact gauges: reveal (counters handled by [data-count] observer above)
+  const gio = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); gio.unobserve(e.target); } }), { threshold: .35 }) : null;
+  qa('.gauge').forEach(g => gio ? gio.observe(g) : g.classList.add('in'));
 
   // copy e-mail
   qa('.copy').forEach(b => b.addEventListener('click', async () => { try { await navigator.clipboard.writeText(b.dataset.copy); const t = b.textContent; b.textContent = AR ? 'تم النسخ ✓' : 'Copied ✓'; setTimeout(() => b.textContent = t, 1500); } catch (e) {} }));
