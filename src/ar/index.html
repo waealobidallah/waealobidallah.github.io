@@ -12,12 +12,13 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Waeal J. Obidallah","honorificPrefix":"Dr.","jobTitle":["Associate Professor of Information Systems","Consultant, SDAIA"],"affiliation":[{"@type":"Organization","name":"Imam Mohammad Ibn Saud Islamic University"},{"@type":"Organization","name":"Saudi Data and AI Authority (SDAIA)"}],"alumniOf":"University of Ottawa","url":"https://waealobidallah.github.io/","sameAs":["https://orcid.org/0000-0002-5086-3950","https://www.linkedin.com/in/waealobidallah/","https://x.com/waealo","https://scholar.google.com/citations?user=waealobidallah"],"email":"mailto:waealobidallah@gmail.com"}</script>
 </head>
 <body><header class="nav"><div class="wrap"><a class="brand" href="index.html"><span class="dot"></span>وائل عبيدالله</a>
-<nav><ul class="menu"><li><a href="index.html#leadership">القيادة</a></li><li><a href="research.html">البحث</a></li><li><a href="publications.html">المنشورات</a></li><li><a href="students.html">الطلاب والتدريس</a></li><li><a href="index.html#work">الأعمال</a></li><li><a href="index.html#insights">مقالات</a></li><li><a href="index.html#contact">تواصل</a></li><li><a class="lang" href="../index.html">English</a></li></ul></nav><button class="burger" aria-label="Menu">☰</button></div></header>
+<nav><ul class="menu"><li><a href="index.html#leadership">القيادة</a></li><li><a href="research.html">البحث</a></li><li><a href="publications.html">المنشورات</a></li><li><a href="students.html">الطلاب والتدريس</a></li><li><a href="index.html#work">الأعمال</a></li><li><a href="index.html#insights">مقالات</a></li><li><a href="index.html#contact">تواصل</a></li><li><a class="lang" href="../index.html">English</a></li><li><button class="theme" aria-label="Toggle dark mode">☾</button></li></ul></nav><button class="burger" aria-label="Menu">☰</button></div></header>
 <section class="hero" id="top">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="wrap">
     <div>
       <div class="kicker">د. وائل بن جمعة عبيدالله · الرياض، السعودية · أوتاوا، كندا</div>
-      <h1>من استراتيجية الذكاء الاصطناعي إلى <em>كفاءات قادرة على تنفيذها.</em></h1>
+      <h1>من استراتيجية الذكاء الاصطناعي إلى <em><span class="typed" data-words='["كفاءات قادرة على تنفيذها.","برامج وطنية.","معايير تدوم.","بحثٍ يصل إلى التطبيق."]'>كفاءات قادرة على تنفيذها.</span></em></h1>
       <p>قُدتُ في سدايا الاستراتيجية الوطنية لبناء القدرات في الذكاء الاصطناعي — السياسات والبرامج والشراكات التي درّبت أكثر من مليون مواطن — وأدرتُ برنامج مؤتمر ICAN 2026، المؤتمر العالمي لبناء القدرات في البيانات والذكاء الاصطناعي. وخلف ذلك: عقدٌ من الاستشارات في الابتكار والتحول الرقمي مع هيئة الاتصالات والفضاء والتقنية وهيئة الحكومة الرقمية، ودكتوراه من جامعة أوتاوا، و30 ورقة علمية محكمة في مجلات دولية.</p>
       <div class="actions">
         <a class="btn btn-primary" href="#contact">لنتحدث</a>
@@ -58,7 +59,27 @@
   </div>
 </section>
 
-<section id="impact" style="background:#fff">
+
+<section id="capabilities" style="background:#fff">
+  <div class="wrap">
+    <span class="eyebrow">ملف القدرات</span>
+    <h2>أين يتركّز العمل.</h2>
+    <p class="lead">مرّر أو اضغط على أي محور لترى الدليل خلفه.</p>
+    <div class="radar" data-radar='[
+      {"label":"الاستراتيجية والسياسات","v":0.95,"text":"الاستراتيجية الوطنية لبناء القدرات في الذكاء الاصطناعي وسياساتها في سدايا؛ تحليل فجوات المهارات؛ مسارات تعلّم من المدرسة إلى التنفيذيين؛ شراكات مع 14 جامعة."},
+      {"label":"تنفيذ البرامج","v":0.9,"text":"ICAN 2026 (أكثر من 30 ألف حضور، 27 اتفاقية) مديرًا للبرنامج؛ الشارات الوطنية من الفكرة إلى أول اختبار في أقل من سنة؛ برامج درّبت أكثر من مليون مواطن."},
+      {"label":"إدارة الابتكار","v":0.85,"text":"نموذج الابتكار والدليل التطبيقي لهيئة الاتصالات (ISO 56002)، معمل الابتكار، 10 نماذج أولية؛ نظام إدارة الأفكار بوزارة الداخلية؛ شهادة GInI."},
+      {"label":"المعايير والتقييم","v":0.85,"text":"المشاركة في تطوير معايير البحث والابتكار في قياس (230+ جهة في كل دورة)؛ أطر كفايات الشارات؛ لجنة التصنيف السعودي الموحد."},
+      {"label":"البيانات والذكاء الاصطناعي","v":0.8,"text":"دكتوراه في اكتشاف خدمات الويب بمعالجة اللغة؛ تعلّم الآلة للمصانع الذكية في Ciena؛ 30 ورقة في التعلّم العميق وأمن إنترنت الأشياء ونمذجة التبنّي."},
+      {"label":"التدريس والبحث","v":0.8,"text":"أستاذ مشارك؛ 13 مقررًا؛ 5 رسائل ماجستير؛ 4 منح؛ محرر ضيف؛ 592 استشهادًا، h-index 11."}
+    ]'>
+      <div class="radar-svg"></div>
+      <div class="card radar-info"></div>
+    </div>
+  </div>
+</section>
+
+<section id="impact">
   <div class="wrap">
     <span class="eyebrow">أثر مختار</span>
     <h2>أشياء موجودة الآن ولم تكن قبل.</h2>
@@ -200,7 +221,7 @@
       <span class="eyebrow">تواصل</span>
       <h2>لنبنِ قدراتٍ بأثرٍ وطني.</h2>
       <p class="lead">متاح للأدوار التنفيذية والاستشارية، والمشاركة في المؤتمرات، والتعاون البحثي، والشراكات في بناء القدرات في الذكاء الاصطناعي وإدارة الابتكار والتحول الرقمي — في السعودية وكندا.</p>
-      <p><a href="mailto:waealobidallah@gmail.com" style="font-weight:700" dir="ltr">waealobidallah@gmail.com</a></p>
+      <p><a href="mailto:waealobidallah@gmail.com" style="font-weight:700" dir="ltr">waealobidallah@gmail.com</a> <button class="copy" data-copy="waealobidallah@gmail.com">نسخ</button></p>
     </div>
     <form class="form card" data-mailto="waealobidallah@gmail.com">
       <input name="name" placeholder="الاسم" required><input name="email" type="email" placeholder="البريد الإلكتروني" required><textarea name="message" placeholder="الرسالة" required></textarea>

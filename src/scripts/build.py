@@ -35,7 +35,7 @@ def nav(lang, base, alt):
     langlink = f'<li><a class="lang" href="{alt}">{"English" if lang=="ar" else "العربية"}</a></li>'
     name = 'وائل عبيدالله' if lang == 'ar' else 'Waeal J. Obidallah'
     return f'''<header class="nav"><div class="wrap"><a class="brand" href="{'' if lang=='ar' else base}index.html"><span class="dot"></span>{name}</a>
-<nav><ul class="menu">{items}{langlink}</ul></nav><button class="burger" aria-label="Menu">☰</button></div></header>'''
+<nav><ul class="menu">{items}{langlink}<li><button class="theme" aria-label="Toggle dark mode">☾</button></li></ul></nav><button class="burger" aria-label="Menu">☰</button></div></header>'''
 
 def foot(lang, base):
     if lang == 'ar':
