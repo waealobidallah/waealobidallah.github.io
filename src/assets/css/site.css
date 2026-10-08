@@ -168,3 +168,15 @@ mark{background:#FFE9A8;color:inherit;border-radius:3px;padding:0 2px}
 .slider .ctrl button{font:inherit;cursor:pointer;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 16px;font-weight:700}
 .slider .dots button.on{background:var(--navy);color:#fff;border-color:var(--navy)} .slider .prev,.slider .next{width:40px;height:40px;padding:0!important;font-size:1.1rem}
 .slide .slide-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px} .slide .slide-head h3{margin:0}
+
+/* logo marquee */
+.marquee{overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);direction:ltr}
+.marquee-track{display:flex;gap:18px;width:max-content;animation:marquee 42s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.logo{flex:none;height:88px;padding:14px 22px;background:#fff;border:1px solid var(--line);border-radius:14px;cursor:pointer;display:flex;align-items:center;transition:transform .25s,box-shadow .25s,border-color .25s}
+.logo img{height:52px;width:auto;max-width:220px;object-fit:contain;filter:grayscale(1);opacity:.75;transition:filter .3s,opacity .3s}
+.logo:hover,.logo.on{transform:translateY(-4px) scale(1.04);box-shadow:var(--shadow);border-color:var(--mint-2)} .logo:hover img,.logo.on img{filter:none;opacity:1}
+.logo-caption{text-align:center;min-height:1.6em;margin-top:14px}
+.logo-caption b{color:var(--navy)} :root[data-theme="dark"] .logo-caption b{color:#fff}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}}

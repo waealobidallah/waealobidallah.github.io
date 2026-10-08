@@ -175,7 +175,8 @@
   qa('.slider').forEach(sl => {
     const track = q('.track', sl), slides = qa('.slide', track), dots = q('.dots', sl); let i = 0;
     dots.innerHTML = slides.map((s, k) => `<button data-k="${k}" aria-label="${s.dataset.title}">${s.dataset.title}</button>`).join('');
-    const go = k => { i = (k + slides.length) % slides.length; slides[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' }); };
+    const rtl = getComputedStyle(track).direction === 'rtl';
+    const go = k => { i = (k + slides.length) % slides.length; track.scrollTo({ left: i * track.clientWidth * (rtl ? -1 : 1), behavior: 'smooth' }); qa('button', dots).forEach((b, j) => b.classList.toggle('on', j === i)); };
     const sync = () => { const w = track.clientWidth; i = Math.round(Math.abs(track.scrollLeft) / w); qa('button', dots).forEach((b, k) => b.classList.toggle('on', k === i)); };
     q('.prev', sl).addEventListener('click', () => go(i - 1)); q('.next', sl).addEventListener('click', () => go(i + 1));
     qa('button', dots).forEach(b => b.addEventListener('click', () => go(+b.dataset.k)));
@@ -219,6 +220,10 @@
     btns.forEach((b, i) => b.addEventListener('click', () => go(i))); go(0);
     let i = 0; const auto = setInterval(() => { i = (i + 1) % btns.length; go(i); }, 4000); stepper.addEventListener('click', () => clearInterval(auto));
   }
+
+  // logo marquee captions
+  const cap = q('.logo-caption');
+  if (cap) qa('.logo').forEach(l => { const on = () => { qa('.logo').forEach(x => x.classList.toggle('on', x === l)); cap.innerHTML = `<b>${l.dataset.name}</b> — ${l.dataset.role}`; }; l.addEventListener('mouseenter', on); l.addEventListener('click', on); l.addEventListener('focus', on); });
 
   // copy e-mail
   qa('.copy').forEach(b => b.addEventListener('click', async () => { try { await navigator.clipboard.writeText(b.dataset.copy); const t = b.textContent; b.textContent = AR ? 'تم النسخ ✓' : 'Copied ✓'; setTimeout(() => b.textContent = t, 1500); } catch (e) {} }));
