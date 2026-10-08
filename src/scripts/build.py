@@ -4,7 +4,7 @@ Run: python3 scripts/build.py   (writes index.html, ar/index.html, publications.
 import os, re, json, datetime, time
 ICONS = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'icons.json')))
 ICONS['mail'] = {'t': 'Email', 'vb': '0 0 24 24', 'd': 'M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.4V18h16V7.4l-8 5.3-8-5.3zM4.9 7l7.1 4.7L19.1 7H4.9z'}
-LINKS = [('scholar', 'https://scholar.google.com/citations?view_op=search_authors&mauthors=Waeal+Obidallah'), ('orcid', 'https://orcid.org/0000-0002-5086-3950'), ('scopus', 'https://www.scopus.com/authid/detail.uri?authorId=55838260600'), ('linkedin', 'https://www.linkedin.com/in/waealobidallah/'), ('x', 'https://x.com/waealo'), ('github', 'https://github.com/waealobidallah'), ('mail', 'mailto:waealobidallah@gmail.com')]
+LINKS = [('scholar', 'https://scholar.google.com/citations?user=-TA8SkcAAAAJ&hl=en'), ('orcid', 'https://orcid.org/0000-0002-5086-3950'), ('scopus', 'https://www.scopus.com/authid/detail.uri?authorId=55838260600'), ('linkedin', 'https://www.linkedin.com/in/waealobidallah/'), ('x', 'https://x.com/waealo'), ('github', 'https://github.com/waealobidallah'), ('mail', 'mailto:waealobidallah@gmail.com')]
 AR_T = {'scholar': 'Google Scholar', 'orcid': 'ORCID', 'scopus': 'Scopus', 'linkedin': 'LinkedIn', 'x': 'X', 'github': 'GitHub', 'mail': 'البريد الإلكتروني'}
 
 def social(lang, variant='light', keys=None):
