@@ -156,21 +156,31 @@
   }
 
   // capability radar (SVG) with hover/click evidence
-  const radar = q('[data-radar]');
-  if (radar) {
-    const axes = JSON.parse(radar.getAttribute('data-radar')); const n = axes.length, R = 150, cx = 220, cy = 200;
+  qa('[data-radar]').forEach(radar => {
+    const axes = JSON.parse(radar.getAttribute('data-radar')); const n = axes.length, R = 140, cx = 270, cy = 200;
     const pt = (i, r) => { const a = -Math.PI / 2 + i * 2 * Math.PI / n; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; };
-    let svg = `<svg viewBox="0 0 440 400">`;
+    let svg = `<svg viewBox="0 0 540 400">`;
     [.25, .5, .75, 1].forEach(f => svg += `<polygon points="${axes.map((_, i) => pt(i, R * f).join(',')).join(' ')}" fill="none" stroke="var(--line)"/>`);
     axes.forEach((a, i) => { const [x, y] = pt(i, R); svg += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="var(--line)"/>`; });
     svg += `<polygon class="area" points="${axes.map((a, i) => pt(i, R * a.v).join(',')).join(' ')}" fill="rgba(14,124,114,.22)" stroke="var(--teal)" stroke-width="2.5" stroke-linejoin="round"/>`;
-    axes.forEach((a, i) => { const [x, y] = pt(i, R * a.v), [lx, ly] = pt(i, R + 28); svg += `<g class="axis" data-i="${i}"><circle cx="${x}" cy="${y}" r="5" fill="var(--teal)"/><text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle">${a.label}</text></g>`; });
+    axes.forEach((a, i) => { const [x, y] = pt(i, R * a.v), [lx, ly] = pt(i, R + 22); const anc = lx > cx + 12 ? "start" : lx < cx - 12 ? "end" : "middle"; svg += `<g class="axis" data-i="${i}"><circle cx="${x}" cy="${y}" r="5" fill="var(--teal)"/><text x="${lx}" y="${ly}" text-anchor="${anc}" dominant-baseline="middle">${a.label}</text></g>`; });
     svg += '</svg>'; q('.radar-svg', radar).innerHTML = svg;
     const info = q('.radar-info', radar);
     const show = i => { qa('.axis', radar).forEach(g => g.classList.toggle('on', +g.dataset.i === i)); info.innerHTML = `<h4>${axes[i].label}</h4><p class="muted small">${axes[i].text}</p>`; };
     qa('.axis', radar).forEach(g => { g.addEventListener('mouseenter', () => show(+g.dataset.i)); g.addEventListener('click', () => show(+g.dataset.i)); });
     show(0);
-  }
+  });
+
+  // profile slider (capability / research)
+  qa('.slider').forEach(sl => {
+    const track = q('.track', sl), slides = qa('.slide', track), dots = q('.dots', sl); let i = 0;
+    dots.innerHTML = slides.map((s, k) => `<button data-k="${k}" aria-label="${s.dataset.title}">${s.dataset.title}</button>`).join('');
+    const go = k => { i = (k + slides.length) % slides.length; slides[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' }); };
+    const sync = () => { const w = track.clientWidth; i = Math.round(Math.abs(track.scrollLeft) / w); qa('button', dots).forEach((b, k) => b.classList.toggle('on', k === i)); };
+    q('.prev', sl).addEventListener('click', () => go(i - 1)); q('.next', sl).addEventListener('click', () => go(i + 1));
+    qa('button', dots).forEach(b => b.addEventListener('click', () => go(+b.dataset.k)));
+    track.addEventListener('scroll', sync, { passive: true }); sync();
+  });
 
   // publications: year chart + live search (hooks into data rendered by the first block)
   const pubs = q('[data-pubs]');

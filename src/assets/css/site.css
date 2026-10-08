@@ -139,7 +139,7 @@ footer{padding:36px 0;color:var(--ink-3);font-size:.88rem;border-top:1px solid v
 .stage h3{cursor:pointer;user-select:none} .stage h3:after{content:"−";float:inline-end;color:var(--ink-3);font-weight:400} .stage.closed h3:after{content:"+"} .stage.closed .items{display:none}
 /* radar */
 .radar{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}@media(max-width:800px){.radar{grid-template-columns:1fr}}
-.radar svg{width:100%;max-width:440px;margin:auto;display:block} .radar .axis{cursor:pointer}
+.radar svg{width:100%;max-width:540px;margin:auto;display:block;overflow:visible;direction:ltr} .radar .axis{cursor:pointer}
 .radar .axis text{font-size:11px;font-weight:700;fill:var(--ink-2)} .radar .axis.on text{fill:var(--teal)} .radar .axis.on circle{r:7}
 .radar-info{min-height:120px}
 /* pubs chart + search */
@@ -160,3 +160,11 @@ mark{background:#FFE9A8;color:inherit;border-radius:3px;padding:0 2px}
 #totop.show{opacity:1;pointer-events:auto}
 .copy{cursor:pointer;border:1.5px dashed var(--line);border-radius:8px;padding:2px 8px;font-size:.8rem;background:none;font:inherit;color:var(--teal)}
 .hero h1 .typed{border-inline-end:2px solid var(--mint-2);animation:blink 1s step-end infinite}@keyframes blink{50%{border-color:transparent}}
+
+/* profile slider */
+.slider{position:relative;margin-top:10px} .slider .track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:24px;scroll-behavior:smooth}
+.slider .track::-webkit-scrollbar{display:none} .slider .slide{flex:0 0 100%;scroll-snap-align:start}
+.slider .ctrl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px}
+.slider .ctrl button{font:inherit;cursor:pointer;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 16px;font-weight:700}
+.slider .dots button.on{background:var(--navy);color:#fff;border-color:var(--navy)} .slider .prev,.slider .next{width:40px;height:40px;padding:0!important;font-size:1.1rem}
+.slide .slide-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px} .slide .slide-head h3{margin:0}
