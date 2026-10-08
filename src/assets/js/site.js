@@ -208,7 +208,7 @@
     const nodes = JSON.parse(mapEl.getAttribute('data-nodes'));
     const base = mapEl.getAttribute('data-base') || '';
     const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
-    let W, H, dpr = devicePixelRatio || 1, sel = null, hover = null, drag = null, t0 = performance.now();
+    let W, H, dpr = devicePixelRatio || 1, sel = null, hover = null, drag = null, t0 = performance.now(); const reduced = matchMedia('(prefers-reduced-motion:reduce)').matches;
     const centre = { id: 'me', label: nodes.me || 'Waeal', fixed: true };
     const list = nodes.items.map((n, i) => ({ ...n, a: (i / nodes.items.length) * Math.PI * 2 - Math.PI / 2 }));
     const resize = () => { W = mapEl.clientWidth; H = mapEl.clientHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); centre.x = W / 2; centre.y = H / 2; const R = Math.min(W, H) * .36; list.forEach(n => { if (!n.moved) { n.x = centre.x + Math.cos(n.a) * R * (n.r || 1); n.y = centre.y + Math.sin(n.a) * R * (n.r || 1); n.tx = n.x; n.ty = n.y; } }); };
@@ -217,35 +217,34 @@
     const pos = e => { const r = cv.getBoundingClientRect(); const p = e.touches ? e.touches[0] : e; return { x: p.clientX - r.left, y: p.clientY - r.top }; };
     const hit = p => list.find(n => Math.hypot(n.x - p.x, n.y - p.y) < 30);
     const show = n => { sel = n; if (!n) { panel.classList.remove('on'); return; } panel.innerHTML = `${n.logo ? `<img src="${base}assets/img/logos/${n.logo}.png" alt="">` : ''}<b>${n.label}</b>${n.role}<small>${n.years}</small>`; panel.classList.add('on'); };
-    cv.addEventListener('mousemove', e => { const p = pos(e); if (drag) { drag.x = drag.tx = p.x; drag.y = drag.ty = p.y; drag.moved = true; } else hover = hit(p); });
+    cv.addEventListener('mousemove', e => { const p = pos(e); mapEl.style.setProperty('--mx', (p.x / W * 100) + '%'); mapEl.style.setProperty('--my', (p.y / H * 100) + '%'); if (drag) { drag.x = drag.tx = p.x; drag.y = drag.ty = p.y; drag.moved = true; } else hover = hit(p); });
     cv.addEventListener('mousedown', e => { const n = hit(pos(e)); if (n) { drag = n; cv.classList.add('drag'); } });
     addEventListener('mouseup', () => { if (drag && !drag.dragged) {} cv.classList.remove('drag'); drag = null; });
     cv.addEventListener('click', e => { const n = hit(pos(e)); show(n && n !== sel ? n : null); });
     cv.addEventListener('touchstart', e => { const n = hit(pos(e)); if (n) { drag = n; e.preventDefault(); } }, { passive: false });
     cv.addEventListener('touchmove', e => { if (drag) { const p = pos(e); drag.x = drag.tx = p.x; drag.y = drag.ty = p.y; drag.moved = true; e.preventDefault(); } }, { passive: false });
     cv.addEventListener('touchend', () => { if (drag) show(drag); drag = null; });
-    const reduced = matchMedia('(prefers-reduced-motion:reduce)').matches;
     (function frame(now) {
       const t = (now - t0) / 1000; ctx.clearRect(0, 0, W, H);
-      const ink = css('--ink'), rule = css('--rule'), cobalt = css('--cobalt'), amber = css('--amber'), ink3 = css('--ink-3'), paper = css('--paper');
+      const ink = '#ECEDE8', rule = 'rgba(255,255,255,.16)', cobalt = '#8FA0FF', amber = css('--amber') || '#F0B429', ink3 = '#9AA1AB', paper = '#F7F8F5'; const intro = reduced ? 1 : Math.min(1, t / 2.2);
       // gentle drift
       list.forEach((n, i) => { if (n !== drag && !reduced) { n.x += (n.tx + Math.sin(t * .6 + i) * 6 - n.x) * .05; n.y += (n.ty + Math.cos(t * .5 + i * 1.3) * 6 - n.y) * .05; } });
       // links
-      list.forEach(n => { const on = n === sel || n === hover; ctx.strokeStyle = on ? cobalt : rule; ctx.lineWidth = on ? 2 : 1; ctx.beginPath(); ctx.moveTo(centre.x, centre.y); ctx.lineTo(n.x, n.y); ctx.stroke();
+      list.forEach((n, i) => { const on = n === sel || n === hover; const p = Math.max(0, Math.min(1, (intro * list.length - i * .6))); if (p <= 0) return; ctx.strokeStyle = on ? cobalt : rule; ctx.lineWidth = on ? 2 : 1; ctx.beginPath(); ctx.moveTo(centre.x, centre.y); ctx.lineTo(centre.x + (n.x - centre.x) * p, centre.y + (n.y - centre.y) * p); ctx.stroke(); if (p < 1) return;
         // year label along the link
         const mx = (centre.x + n.x) / 2, my = (centre.y + n.y) / 2; ctx.fillStyle = on ? cobalt : ink3; ctx.font = `500 10px ${css('--ui')}`; ctx.textAlign = 'center'; ctx.fillText(n.since, mx, my - 6); });
       // secondary links between related orgs
       (nodes.links || []).forEach(([a, b]) => { const A = list.find(n => n.id === a), B = list.find(n => n.id === b); if (!A || !B) return; ctx.setLineDash([3, 5]); ctx.strokeStyle = rule; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke(); ctx.setLineDash([]); });
       // nodes
-      list.forEach(n => { const on = n === sel || n === hover; const r = on ? 30 : 26;
-        ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 7); ctx.fillStyle = paper; ctx.fill(); ctx.lineWidth = on ? 2 : 1; ctx.strokeStyle = on ? cobalt : ink; ctx.stroke();
+      list.forEach((n, i) => { const on = n === sel || n === hover; const p = Math.max(0, Math.min(1, (intro * list.length - i * .6))); if (p < 1) return; const r = on ? 30 : 26;
+        ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 7); ctx.fillStyle = paper; ctx.fill(); ctx.lineWidth = on ? 2 : 1; ctx.strokeStyle = on ? amber : 'rgba(255,255,255,.35)'; ctx.stroke();
         const im = img[n.id]; if (im && im.complete && im.naturalWidth) { const s = r * 1.3; const ar = im.naturalWidth / im.naturalHeight; let w = s, h = s / ar; if (h > s * .8) { h = s * .8; w = h * ar; } ctx.save(); ctx.beginPath(); ctx.arc(n.x, n.y, r - 2, 0, 7); ctx.clip(); ctx.globalAlpha = on ? 1 : .85; ctx.drawImage(im, n.x - w / 2, n.y - h / 2, w, h); ctx.restore(); }
         else { ctx.fillStyle = ink; ctx.font = `600 11px ${css('--ui')}`; ctx.textAlign = 'center'; ctx.fillText(n.short || n.label, n.x, n.y + 4); }
         ctx.fillStyle = on ? cobalt : ink; ctx.font = `500 11px ${css('--ui')}`; ctx.textAlign = 'center'; ctx.fillText(n.label, n.x, n.y + r + 14); });
       // centre
-      ctx.beginPath(); ctx.arc(centre.x, centre.y, 34, 0, 7); ctx.fillStyle = ink; ctx.fill();
+      ctx.beginPath(); ctx.arc(centre.x, centre.y, 34, 0, 7); ctx.fillStyle = '#2140E6'; ctx.fill();
       ctx.beginPath(); ctx.arc(centre.x, centre.y, 40 + Math.sin(t * 2) * 2, 0, 7); ctx.strokeStyle = amber; ctx.lineWidth = 1.5; ctx.stroke();
-      ctx.fillStyle = paper; ctx.font = `600 12px ${css('--ui')}`; ctx.textAlign = 'center'; ctx.fillText(centre.label, centre.x, centre.y + 4);
+      ctx.fillStyle = '#fff'; ctx.font = `600 12px ${css('--ui')}`; ctx.textAlign = 'center'; ctx.fillText(centre.label, centre.x, centre.y + 4);
       requestAnimationFrame(frame);
     })(t0);
   }
@@ -256,7 +255,7 @@
     const rows = JSON.parse(chart.getAttribute('data-rows')); const Y0 = 2008, Y1 = 2026.99, span = Y1 - Y0;
     const pct = y => ((y - Y0) / span * 100).toFixed(2) + '%';
     let html = `<div class="years"><div></div><div>${Array.from({ length: 10 }, (_, k) => 2008 + k * 2).map(y => `<span style="inset-inline-start:${pct(y)}">${y}</span>`).join('')}</div></div>`;
-    rows.forEach((r, i) => { html += `<div class="row ${r.bars.some(b => b.edu) ? "stacked" : ""}"><div class="lbl">${r.org}<small>${r.kind || ''}</small></div><div class="lane">${r.bars.map((b, k) => `<div class="bar ${b.edu ? 'edu' : ''}" data-i="${i}" data-k="${k}" style="inset-inline-start:${pct(b.from)};width:calc(${((b.to - b.from) / span * 100).toFixed(2)}% - 2px)" title="${b.title}"></div>`).join('')}</div></div>`; });
+    rows.forEach((r, i) => { html += `<div class="row ${r.bars.some(b => b.edu) ? "stacked" : ""}"><div class="lbl">${r.org}<small>${r.kind || ''}</small></div><div class="lane">${r.bars.map((b, k) => `<div class="bar ${b.edu ? 'edu' : ''} k-${r.cat || 'consulting'} ${b.to >= 2026.9 ? 'now' : ''}" data-i="${i}" data-k="${k}" style="inset-inline-start:${pct(b.from)};width:calc(${((b.to - b.from) / span * 100).toFixed(2)}% - 2px)" title="${b.title}"></div>`).join('')}</div></div>`; });
     html += `<div class="tip"></div>`; chart.innerHTML = html;
     const tip = q('.tip', chart);
     const show = (i, k) => { const b = rows[i].bars[k]; qa('.bar', chart).forEach(x => x.classList.toggle('on', +x.dataset.i === i && +x.dataset.k === k)); tip.innerHTML = `<span>${rows[i].org} · ${b.years}</span><b>${b.title}</b>${b.text || ''}`; };

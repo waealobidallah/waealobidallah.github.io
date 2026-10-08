@@ -6,7 +6,7 @@ STAMP = str(int(time.time()))
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 T = os.path.join(ROOT, 'templates')
 
-FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">'
+FONTS = '<link rel="preload" href="{base}assets/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="{base}assets/css/fonts.css">'
 
 NAV = {
  'en': [('index.html#arenas','What I do'),('research.html','Research'),('publications.html','Publications'),('students.html','Students & Teaching'),('index.html#work','Work'),('index.html#insights','Insights'),('index.html#contact','Contact')],
@@ -24,7 +24,7 @@ def head(lang, title, desc, base, alt):
 <meta property="og:title" content="{title}"><meta property="og:description" content="{desc}"><meta property="og:type" content="profile"><meta property="og:image" content="https://waealobidallah.github.io/assets/img/waeal.jpg">
 <link rel="alternate" hreflang="{'en' if lang=='ar' else 'ar'}" href="{alt}">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%230B1F3A%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%277%27 fill=%27%230E7C72%27/%3E%3C/svg%3E">
-{FONTS}
+{FONTS.replace('{base}', base)}
 <link rel="stylesheet" href="{base}assets/css/site.css?v={STAMP}">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"Person","name":"Waeal J. Obidallah","honorificPrefix":"Dr.","jobTitle":["Associate Professor of Information Systems","Consultant, SDAIA"],"affiliation":[{{"@type":"Organization","name":"Imam Mohammad Ibn Saud Islamic University"}},{{"@type":"Organization","name":"Saudi Data and AI Authority (SDAIA)"}}],"alumniOf":"University of Ottawa","url":"https://waealobidallah.github.io/","sameAs":["https://orcid.org/0000-0002-5086-3950","https://www.linkedin.com/in/waealobidallah/","https://x.com/waealo","https://scholar.google.com/citations?user=waealobidallah"],"email":"mailto:waealobidallah@gmail.com"}}</script>
 </head>
@@ -44,7 +44,8 @@ def foot(lang, base):
     else:
         t = f'<div>© <span data-year>2026</span> Waeal J. Obidallah · Last updated {datetime.date.today():%B %Y}</div>'
     links = '<div><a href="https://scholar.google.com/citations?user=waealobidallah" target="_blank" rel="noopener">Google Scholar</a> · <a href="https://www.linkedin.com/in/waealobidallah/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://orcid.org/0000-0002-5086-3950" target="_blank" rel="noopener">ORCID</a> · <a href="https://x.com/waealo" target="_blank" rel="noopener">X</a></div>'
-    return f'<footer><div class="wrap">{t}{links}</div></footer><script src="{base}assets/js/site.js?v={STAMP}"></script></body></html>'
+    wm = 'وائل عبيدالله' if lang == 'ar' else 'Waeal Obidallah'
+    return f'<footer><div class="wrap" style="display:block"><div class="wordmark" aria-hidden="true">{wm}</div><div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px">{t}{links}</div></div></footer><script src="{base}assets/js/site.js?v={STAMP}"></script></body></html>'
 
 def build(src, out, lang, title, desc, base, alt):
     body = open(os.path.join(T, src), encoding='utf-8').read()
