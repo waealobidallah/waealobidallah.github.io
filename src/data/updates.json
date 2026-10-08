@@ -1,0 +1,24 @@
+{
+  "now": {
+    "date": "October 2026",
+    "date_ar": "أكتوبر 2026",
+    "text": "Preparing batch-two exams for the national AI Badges with King Saud University; reviewing researcher dossiers with the international committee; writing on how nations should certify AI talent.",
+    "text_ar": "أجهّز اختبارات الدفعة الثانية من الشارات الوطنية للذكاء الاصطناعي مع جامعة الملك سعود؛ وأراجع ملفات الباحثين مع اللجنة الدولية؛ وأكتب عن كيفية اعتماد الدول لمواهب الذكاء الاصطناعي."
+  },
+  "news": [
+    {"date": "2026-09", "label": "Sep 2026", "text": "New paper in <em>Electronics</em>: Toward Agentic TestOps — a systematic review and autonomy taxonomy.", "text_ar": "ورقة جديدة في <em>Electronics</em>: نحو Agentic TestOps — مراجعة منهجية وتصنيف للاستقلالية."},
+    {"date": "2026-09", "label": "Sep 2026", "text": "First AI Badges awarded at the UNESCO Global Forum on the Ethics of AI, Riyadh.", "text_ar": "تسليم أول الشارات الوطنية للذكاء الاصطناعي في المنتدى العالمي لأخلاقيات الذكاء الاصطناعي (اليونسكو)، الرياض."},
+    {"date": "2026-01", "label": "Jan 2026", "text": "ICAN 2026 concludes with 27 agreements and 7 national initiatives.", "text_ar": "اختتام مؤتمر ICAN 2026 بـ 27 اتفاقية و7 مبادرات وطنية."},
+    {"date": "2025-08", "label": "Aug 2025", "text": "Promoted to Associate Professor of Information Systems, IMSIU.", "text_ar": "الترقية إلى أستاذ مشارك في نظم المعلومات، جامعة الإمام محمد بن سعود الإسلامية."},
+    {"date": "2025-07", "label": "Jul 2025", "text": "Appointed Vice Chairman of the Board, AI Association.", "text_ar": "تعييني نائبًا لرئيس مجلس إدارة جمعية الذكاء الاصطناعي."}
+  ],
+  "insights": [
+    {"date": "Oct 2026", "where": "LinkedIn", "title": "Why nations need AI badges, not just AI courses", "url": "https://www.linkedin.com/in/waealobidallah/", "lang": "en", "status": "coming"},
+    {"date": "Oct 2026", "where": "LinkedIn", "title": "ما تعلمناه من تدريب مليون مواطن على الذكاء الاصطناعي", "url": "https://www.linkedin.com/in/waealobidallah/", "lang": "ar", "status": "coming"},
+    {"date": "Nov 2026", "where": "Medium", "title": "How do you measure innovation in a government entity?", "url": "", "lang": "en", "status": "coming"}
+  ],
+  "talks": [
+    {"date": "Jan 2026", "event": "ICAN 2026", "place": "Riyadh", "role": "Program Director — conference programme and agreements track", "role_ar": "مدير برنامج المؤتمر — البرنامج العلمي ومسار الاتفاقيات"},
+    {"date": "Sep 2026", "event": "UNESCO Global Forum on the Ethics of AI", "place": "Riyadh", "role": "AI Badges award ceremony", "role_ar": "حفل تسليم الشارات الوطنية للذكاء الاصطناعي"}
+  ]
+}

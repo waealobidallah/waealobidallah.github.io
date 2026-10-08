@@ -1,0 +1,4 @@
+_site/
+_enc/
+.staticrypt.json
+node_modules/

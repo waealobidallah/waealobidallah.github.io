@@ -1,0 +1,18 @@
+name: Sync publications from ORCID
+on:
+  schedule: [{cron: "17 3 * * 1"}]   # every Monday 03:17 UTC
+  workflow_dispatch:
+permissions: {contents: write}
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: python src/scripts/sync_orcid.py
+      - name: Commit if changed
+        run: |
+          git config user.name "orcid-sync[bot]"; git config user.email "actions@users.noreply.github.com"
+          git add src/data/publications.json
+          git diff --cached --quiet || (git commit -m "chore: sync publications from ORCID" && git push)

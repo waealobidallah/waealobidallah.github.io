@@ -1,0 +1,36 @@
+name: Build & deploy to GitHub Pages
+on:
+  push: {branches: [main]}
+  workflow_dispatch:
+permissions: {contents: read, pages: write, id-token: write}
+concurrency: {group: pages, cancel-in-progress: true}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp -r src/. _site/ && rm -rf _site/templates _site/scripts
+          touch _site/.nojekyll
+          printf 'User-agent: *\nDisallow: /\n' > _site/robots.txt   # keep out of search engines while in preview
+      - name: Password-protect (preview mode — remove SITE_PASSWORD secret to publish openly)
+        if: ${{ env.SITE_PASSWORD != '' }}
+        env: {SITE_PASSWORD: "${{ secrets.SITE_PASSWORD }}"}
+        run: |
+          npx --yes staticrypt@3 _site -r -d _enc -p "$SITE_PASSWORD" --short --remember 30 \
+            --template-title "Waeal J. Obidallah — private preview" \
+            --template-instructions "This site is in preview. Enter the password to continue." \
+            --template-color-primary "#0E7C72" --template-color-secondary "#0B1F3A" \
+            --template-button "Enter" --template-placeholder "Password"
+          rm -rf _site && mv _enc/_site _site && touch _site/.nojekyll && cp _enc/.staticrypt.json . 2>/dev/null || true
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: _site}
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: {name: github-pages, url: "${{ steps.deployment.outputs.page_url }}"}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

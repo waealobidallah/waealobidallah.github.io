@@ -1,0 +1,71 @@
+# Decap CMS — edits data/*.json directly in the GitHub repo (commits to main → GitHub Pages redeploys).
+# Login: GitHub OAuth. Set base_url/auth_endpoint once an OAuth provider is configured (see README).
+backend:
+  name: github
+  repo: waealobidallah/waealobidallah.github.io
+  branch: main
+  base_url: https://decap-oauth.waealobidallah.workers.dev   # TODO: replace after OAuth setup
+  auth_endpoint: auth
+media_folder: assets/img/uploads
+public_folder: /assets/img/uploads
+locale: en
+collections:
+  - name: updates
+    label: "Site updates (Now · News · Insights · Talks)"
+    files:
+      - name: updates
+        label: "updates.json"
+        file: data/updates.json
+        fields:
+          - {label: "Now", name: now, widget: object, fields: [
+              {label: "Date (EN)", name: date, widget: string},
+              {label: "Date (AR)", name: date_ar, widget: string},
+              {label: "Text (EN)", name: text, widget: text},
+              {label: "Text (AR)", name: text_ar, widget: text}]}
+          - {label: "News", name: news, widget: list, fields: [
+              {label: "Sort date (YYYY-MM)", name: date, widget: string},
+              {label: "Label", name: label, widget: string},
+              {label: "Text (EN, HTML ok)", name: text, widget: text},
+              {label: "Text (AR)", name: text_ar, widget: text, required: false}]}
+          - {label: "Insights", name: insights, widget: list, fields: [
+              {label: "Date", name: date, widget: string},
+              {label: "Where", name: where, widget: string},
+              {label: "Title", name: title, widget: string},
+              {label: "URL", name: url, widget: string, required: false},
+              {label: "Language", name: lang, widget: select, options: ["en", "ar"]},
+              {label: "Status", name: status, widget: select, options: ["published", "coming"], default: published}]}
+          - {label: "Talks", name: talks, widget: list, fields: [
+              {label: "Date", name: date, widget: string},
+              {label: "Event", name: event, widget: string},
+              {label: "Place", name: place, widget: string},
+              {label: "Role (EN)", name: role, widget: string},
+              {label: "Role (AR)", name: role_ar, widget: string, required: false}]}
+  - name: publications
+    label: "Publications (ORCID-synced — edit metrics & 'selected' only)"
+    files:
+      - name: publications
+        label: "publications.json"
+        file: data/publications.json
+        fields:
+          - {label: Source, name: source, widget: string}
+          - {label: Updated, name: updated, widget: string}
+          - {label: Metrics, name: metrics, widget: object, fields: [
+              {label: "Journal", name: journal, widget: number},
+              {label: "Conference", name: conference, widget: number},
+              {label: "Posters", name: posters, widget: number},
+              {label: "Citations (Scholar)", name: citations, widget: number},
+              {label: "h-index", name: h_index, widget: number},
+              {label: "i10-index", name: i10_index, widget: number},
+              {label: "Scholar updated", name: scholar_updated, widget: string}]}
+          - {label: Items, name: items, widget: list, collapsed: true, summary: "{{fields.year}} — {{fields.title}}", fields: [
+              {label: Year, name: year, widget: number},
+              {label: Type, name: type, widget: select, options: ["journal", "conference"]},
+              {label: Title, name: title, widget: string},
+              {label: Authors, name: authors, widget: string},
+              {label: Venue, name: venue, widget: string},
+              {label: DOI, name: doi, widget: string, required: false},
+              {label: Tags, name: tags, widget: list, required: false},
+              {label: Role, name: role, widget: select, options: ["sole", "first", "co-author"]},
+              {label: Citations, name: citations, widget: number, required: false},
+              {label: "Selected (show on home)", name: selected, widget: boolean, required: false},
+              {label: "Blurb (one line, for selected)", name: blurb, widget: string, required: false}]}
