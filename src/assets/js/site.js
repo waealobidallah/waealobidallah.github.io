@@ -62,7 +62,7 @@
       const authors = esc(i.authors).replace(/Obidallah/g, '<b>Obidallah</b>');
       const doi = i.doi ? `<a href="https://doi.org/${esc(i.doi)}" target="_blank" rel="noopener">DOI</a>` : '';
       const type = i.type === 'journal' ? (AR ? 'مجلة' : 'Journal') : (AR ? 'مؤتمر' : 'Conference');
-      return `<article class="pub reveal in" dir="ltr"><div class="yr">${i.year}</div><div><h4>${esc(i.title)}</h4><div class="meta">${authors} · <em>${esc(i.venue)}</em> ${doi ? '· ' + doi : ''}</div>${brief && i.blurb ? `<p class="small muted" style="margin:.4em 0 0">${esc(i.blurb)}</p>` : ''}<div class="tags"><span class="tag navy">${type}</span>${role ? `<span class="tag">${role}</span>` : ''}${(i.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}${i.citations ? `<span class="tag navy">${i.citations} ${AR ? 'استشهاد' : 'citations'}</span>` : ''}</div></div></article>`;
+      return `<article class="pub reveal in" dir="ltr"><div class="yr">${i.year}</div><div><h4>${esc(i.title)}</h4><div class="meta">${authors} · <em>${esc(i.venue)}</em> ${doi ? '· ' + doi : ''}</div>${brief && i.blurb ? `<p class="small muted" style="margin:.4em 0 0">${esc(i.blurb)}</p>` : ''}<div class="tags"><span class="tag navy">${type}</span>${role ? `<span class="tag">${role}</span>` : ''}${(i.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}${i.citations ? `<span class="tag navy">${i.citations} ${AR ? 'استشهاد' : 'citations'}</span>` : ''}${i.review ? `<span class="tag navy">${AR ? 'جديد من ORCID' : 'new from ORCID'}</span>` : ''}</div></div></article>`;
     }
   });
 
