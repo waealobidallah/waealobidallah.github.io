@@ -637,7 +637,9 @@
       "authors": "Parveen, Obidallah, Phuc, Alduraywish, Alghamdi, Shafiq",
       "venue": "BMC Psychology",
       "doi": "10.1186/s40359-026-04042-2",
-      "tags": [],
+      "tags": [
+        "Education"
+      ],
       "role": "co-author",
       "review": true
     },
@@ -681,8 +683,10 @@
       "authors": "Obidallah, Albathan, Alshaikh, Almakki, Abbas",
       "venue": "International Journal of Information Security",
       "doi": "10.1007/s10207-025-01153-6",
-      "tags": [],
-      "role": "co-author",
+      "tags": [
+        "Security"
+      ],
+      "role": "first",
       "review": true
     },
     {
@@ -692,7 +696,9 @@
       "authors": "Alsamaani, Almakki, Obidallah",
       "venue": "2025 IEEE International Conference on E-Business Engineering (ICEBE)",
       "doi": "10.1109/icebe68123.2025.00047",
-      "tags": [],
+      "tags": [
+        "Computer vision"
+      ],
       "role": "co-author",
       "review": true
     },
@@ -714,8 +720,11 @@
       "authors": "Obidallah",
       "venue": "Applied Sciences",
       "doi": "10.3390/app151910520",
-      "tags": [],
-      "role": "co-author",
+      "tags": [
+        "IoT security",
+        "AI & healthcare"
+      ],
+      "role": "sole",
       "review": true
     },
     {
@@ -725,7 +734,9 @@
       "authors": "Sikkandar, Sundaram, Almeshari, Begum, Sankari, Alduraywish, Obidallah, Alotaibi",
       "venue": "Scientific Reports",
       "doi": "10.1038/s41598-025-11277-3",
-      "tags": [],
+      "tags": [
+        "AI & healthcare"
+      ],
       "role": "co-author",
       "review": true
     }
