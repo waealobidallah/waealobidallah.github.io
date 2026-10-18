@@ -69,3 +69,17 @@ collections:
               {label: Citations, name: citations, widget: number, required: false},
               {label: "Selected (show on home)", name: selected, widget: boolean, required: false},
               {label: "Blurb (one line, for selected)", name: blurb, widget: string, required: false}]}
+  - name: credentials
+    label: "Certifications & awards"
+    files:
+      - name: credentials
+        label: "credentials.json"
+        file: data/credentials.json
+        fields:
+          - {label: Certifications, name: certifications, widget: list, fields: [
+              {label: Title, name: title, widget: string}, {label: Issuer, name: issuer, widget: string},
+              {label: "Date (EN)", name: date, widget: string}, {label: "Date (AR)", name: date_ar, widget: string},
+              {label: "Tag (EN)", name: tag, widget: string}, {label: "Tag (AR)", name: tag_ar, widget: string}]}
+          - {label: Awards, name: awards, widget: list, fields: [
+              {label: Year, name: year, widget: string}, {label: "Title (EN)", name: title, widget: string}, {label: "Title (AR)", name: title_ar, widget: string},
+              {label: "Text (EN)", name: text, widget: string}, {label: "Text (AR)", name: text_ar, widget: string}]}

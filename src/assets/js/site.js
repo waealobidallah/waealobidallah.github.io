@@ -229,6 +229,15 @@
   const gio = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); gio.unobserve(e.target); } }), { threshold: .35 }) : null;
   qa('.gauge').forEach(g => gio ? gio.observe(g) : g.classList.add('in'));
 
+  // credentials.json → certifications + awards
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const BASE = document.documentElement.getAttribute('data-base') || '';
+  fetch(BASE + 'data/credentials.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).catch(() => null).then(c => {
+    if (!c) return;
+    const certs = q('[data-certs]'); if (certs) certs.innerHTML = c.certifications.map(x => `<li><div><b>${esc(x.title)}</b><span>${esc(x.issuer)}</span><span class="tag">${esc(AR ? x.tag_ar : x.tag)}</span></div><div class="when">${esc(AR ? x.date_ar : x.date)}</div></li>`).join('');
+    const aw = q('[data-awards]'); if (aw) aw.innerHTML = c.awards.map(x => `<li><div class="yr">${esc(x.year)}</div><div><b>${esc(AR ? x.title_ar : x.title)}</b><span>${esc(AR ? x.text_ar : x.text)}</span></div></li>`).join('');
+  });
+
   // copy e-mail
   qa('.copy').forEach(b => b.addEventListener('click', async () => { try { await navigator.clipboard.writeText(b.dataset.copy); const t = b.textContent; b.textContent = AR ? 'تم النسخ ✓' : 'Copied ✓'; setTimeout(() => b.textContent = t, 1500); } catch (e) {} }));
 })();
