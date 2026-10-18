@@ -1,6 +1,6 @@
 {
   "source": "ORCID 0000-0002-5086-3950",
-  "updated": "2026-10-12",
+  "updated": "2026-10-18",
   "metrics": {
     "journal": 50,
     "conference": 10,
@@ -502,232 +502,232 @@
       "year": 2026,
       "type": "journal",
       "title": "ChainML Guard: Predictive artificial intelligence for Ethereum fraud prevention",
-      "authors": "… Obidallah …",
+      "authors": "Bidry, Hanine, Anini, Rehouni, Obidallah, Alhulayyil",
       "venue": "SoftwareX",
       "doi": "10.1016/j.softx.2026.102955",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "MongoFlow: An AI-powered web-based MongoDB integrated development environment",
-      "authors": "… Obidallah …",
+      "authors": "Boukhlif, Hanine, Makroum, Obidallah",
       "venue": "SoftwareX",
       "doi": "10.1016/j.softx.2026.102906",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "WRO-water: A hydrology-guided multi-head attention transformer for runoff prediction and water quality early warning",
-      "authors": "… Obidallah …",
+      "authors": "Abbas, Almakki, Albathan, Obidallah, Alshaikh",
       "venue": "Journal of Environmental Management",
       "doi": "10.1016/j.jenvman.2026.130545",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "A novel approach to optimizing predictive models for land use and land cover changes by utilizing a triple-memristor hopfield neural network for improved environmental change detection and forecasting",
-      "authors": "… Obidallah …",
+      "authors": "Shafiq, Fan, Bilal, Obidallah, Alduraywish",
       "venue": "Neurocomputing",
       "doi": "10.1016/j.neucom.2026.133385",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "DrugTrace: Leveraging blockchain and IoT for anti-counterfeit drug traceability",
-      "authors": "… Obidallah …",
+      "authors": "Akrami, Hanine, Harati, Miskar, ELHalla, Abidi, Obidallah, Alhulayyil",
       "venue": "SoftwareX",
       "doi": "10.1016/j.softx.2026.102694",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "FireCast-fusion: Physics-Guided fusion of UAV RGB–thermal imagery and environmental data for near-term wildfire spread prediction",
-      "authors": "… Obidallah …",
+      "authors": "Abbas, Alshaikh, Obidallah, Almakki, Albathan",
       "venue": "Science of Remote Sensing",
       "doi": "10.1016/j.srs.2026.100429",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "MultiSense-L2Net: AI-mediated co-regulation of emotion and motivation in second language writing",
-      "authors": "… Obidallah …",
+      "authors": "Abbas, Alshaikh, Almakki, Albathan, Obidallah",
       "venue": "Acta Psychologica",
       "doi": "10.1016/j.actpsy.2026.106956",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "Artificial intelligence for brain-to-speech decoding in paralysis: a systematic review",
-      "authors": "… Obidallah …",
+      "authors": "Belfrouh, Salmam, Errattahi, Hanine, Obidallah, Alhulayyil",
       "venue": "BMC Medical Informatics and Decision Making",
       "doi": "10.1186/s12911-026-03552-8",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "Secure Water Quality Monitoring using Blockchain-Smart Contract and IoT in 6G Smart Cities",
-      "authors": "… Obidallah …",
+      "authors": "Abbas, Almakki, Albathan, Obidallah, Alshaikh",
       "venue": "Water Resources Management",
       "doi": "10.1007/s11269-026-04630-2",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "Image Fusion for Enhancing Diagnostic Accuracy in Medical Imaging Using FDCT, HSV, and DC-PCNN",
-      "authors": "… Obidallah …",
+      "authors": "Shafiq, Obidallah, Qun, Kamal, Bilal",
       "venue": "Image Analysis and Stereology",
       "doi": "10.5566/ias.3781",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "Bioinspired hybrid optimisation and deep belief neural networks for early chronic kidney disease detection: an explainable clinical AI framework",
-      "authors": "… Obidallah …",
+      "authors": "Ahmad, Obidallah, Shafiq, Albathan, Almakki, Alshaikh, Bilal",
       "venue": "Renal Failure",
       "doi": "10.1080/0886022x.2026.2624917",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "Fusion of genomic and pathological data for breast cancer detection using BCDNN",
-      "authors": "… Obidallah …",
+      "authors": "Bilal, Obidallah, Wassan, Albathan, Almakki, Alshaikh, Shafiq",
       "venue": "Frontiers in Medicine",
       "doi": "10.3389/fmed.2026.1726223",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "Exploring key predictors of ChatGPT adoption in higher education: insights from UTAUT3 and ARCS model",
-      "authors": "… Obidallah …",
+      "authors": "Parveen, Obidallah, Phuc, Alduraywish, Alghamdi, Shafiq",
       "venue": "BMC Psychology",
       "doi": "10.1186/s40359-026-04042-2",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "An Innovative Approach to Extracting and Classifying Non-Functional Requirements Using Machine Learning and NLP",
-      "authors": "… Obidallah …",
+      "authors": "Shafiq, Obidallah, Albathan, Kamal",
       "venue": "Revista Internacional de Métodos Numéricos para Cálculo y Diseño en Ingeniería",
       "doi": "10.23967/j.rimni.2026.10.75552",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2026,
       "type": "journal",
       "title": "Optimized Multimodal Healthcare Image Fusion Using U2Net Restormer with Dilated Dense Encoder–Decoder and Haar-Based Feature Selection",
-      "authors": "… Obidallah …",
+      "authors": "Shafiq, Obidallah, Albathan, Kamal",
       "venue": "Revista Internacional de Métodos Numéricos para Cálculo y Diseño en Ingeniería",
       "doi": "10.23967/j.rimni.2026.10.75903",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2025,
       "type": "journal",
       "title": "OntologyGen: A smart software for automatic ontology generation from MongoDB using Formal Concept Analysis",
-      "authors": "… Obidallah …",
+      "authors": "Elguerraoui, Boutkhoum, Hanine, Obidallah",
       "venue": "SoftwareX",
       "doi": "10.1016/j.softx.2025.102333",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2025,
       "type": "journal",
       "title": "Differential privacy enhanced ransomware detection in cloud VMs using SMPC and bidirectional LSTM with DNN",
-      "authors": "… Obidallah …",
+      "authors": "Obidallah, Albathan, Alshaikh, Almakki, Abbas",
       "venue": "International Journal of Information Security",
       "doi": "10.1007/s10207-025-01153-6",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2025,
       "type": "conference",
       "title": "Real-Time Child Detection Using YOLO Architectures for Enhanced Safety Applications",
-      "authors": "… Obidallah …",
+      "authors": "Alsamaani, Almakki, Obidallah",
       "venue": "2025 IEEE International Conference on E-Business Engineering (ICEBE)",
       "doi": "10.1109/icebe68123.2025.00047",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2025,
       "type": "journal",
       "title": "Smart solar power prediction using an FFT-Infused ShuffleNet regressor: A high-accuracy lightweight framework",
-      "authors": "… Obidallah …",
+      "authors": "Khouili, Hanine, Louzazni, Obidallah",
       "venue": "International Journal of Electrical Power &amp; Energy Systems",
       "doi": "10.1016/j.ijepes.2025.111240",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2025,
       "type": "journal",
       "title": "A Soft Computing Approach to Ensuring Data Integrity in IoT-Enabled Healthcare Using Hesitant Fuzzy Sets",
-      "authors": "… Obidallah …",
+      "authors": "Obidallah",
       "venue": "Applied Sciences",
       "doi": "10.3390/app151910520",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     },
     {
       "year": 2025,
       "type": "journal",
       "title": "A novel hybrid convolutional and transformer network for lymphoma classification",
-      "authors": "… Obidallah …",
+      "authors": "Sikkandar, Sundaram, Almeshari, Begum, Sankari, Alduraywish, Obidallah, Alotaibi",
       "venue": "Scientific Reports",
       "doi": "10.1038/s41598-025-11277-3",
       "tags": [],
       "role": "co-author",
-      "new": true
+      "review": true
     }
   ]
 }
