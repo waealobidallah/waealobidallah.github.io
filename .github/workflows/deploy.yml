@@ -14,7 +14,7 @@ jobs:
           mkdir -p _site
           cp -r src/. _site/ && rm -rf _site/templates _site/scripts
           touch _site/.nojekyll
-          printf 'User-agent: *\nDisallow: /\n' > _site/robots.txt   # keep out of search engines while in preview
+          if [ -n "${{ secrets.SITE_PASSWORD }}" ]; then printf 'User-agent: *\nDisallow: /\n' > _site/robots.txt; else printf 'User-agent: *\nAllow: /\nSitemap: https://waealobidallah.github.io/sitemap.xml\n' > _site/robots.txt; fi
       - name: Password-protect (preview mode — remove SITE_PASSWORD secret to publish openly)
         if: ${{ env.SITE_PASSWORD != '' }}
         env: {SITE_PASSWORD: "${{ secrets.SITE_PASSWORD }}"}

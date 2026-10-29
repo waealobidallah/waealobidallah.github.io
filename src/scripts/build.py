@@ -82,3 +82,7 @@ if __name__ == '__main__':
     for p in PAGES:
         if os.path.exists(os.path.join(T, p[0])): build(*p)
         else: print('skip (no template):', p[0])
+    today = datetime.date.today().isoformat()
+    urls = ''.join(f'<url><loc>https://waealobidallah.github.io/{"" if p[1]=="index.html" else p[1]}</loc><lastmod>{today}</lastmod></url>' for p in PAGES)
+    open(os.path.join(ROOT, 'sitemap.xml'), 'w').write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
+    print('wrote sitemap.xml')
