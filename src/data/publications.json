@@ -1,9 +1,9 @@
 {
   "source": "ORCID 0000-0002-5086-3950",
-  "updated": "2026-10-18",
+  "updated": "2026-11-09",
   "metrics": {
-    "journal": 50,
-    "conference": 10,
+    "journal": 54,
+    "conference": 11,
     "posters": 9,
     "citations": 592,
     "h_index": 11,
@@ -737,6 +737,61 @@
       "tags": [
         "AI & healthcare"
       ],
+      "role": "co-author",
+      "review": true
+    },
+    {
+      "year": 2026,
+      "type": "journal",
+      "title": "Exploring the potential of hybridized metaheuristic algorithms for photovoltaic model parameter estimation",
+      "authors": "Khouili, Wardi, Louzazni, Hanine, Obidallah, Alhulayyil",
+      "venue": "Scientific Reports",
+      "doi": "10.1038/s41598-026-73134-1",
+      "tags": [],
+      "role": "co-author",
+      "review": true
+    },
+    {
+      "year": 2026,
+      "type": "journal",
+      "title": "ThermalBird-Mamba: Thermal adaptive state space learning for real time UAV bird detection under low contrast and cluttered backgrounds",
+      "authors": "Abbas, Almakki, Albathan, Obidallah, Alshaikh",
+      "venue": "Science of The Total Environment",
+      "doi": "10.1016/j.scitotenv.2026.182166",
+      "tags": [],
+      "role": "co-author",
+      "review": true
+    },
+    {
+      "year": 2026,
+      "type": "journal",
+      "title": "A Hybrid Approach Using Interval Type-2 Fuzzy Sets and MCDM Methods with Human-Computer Interaction Criteria for Optimizing Distance Education Platforms",
+      "authors": "Obidallah",
+      "venue": "Human-centric Computing and Information Sciences",
+      "doi": "10.22967/HCIS.2026.16.014",
+      "tags": [],
+      "role": "co-author",
+      "review": true
+    },
+    {
+      "year": 2024,
+      "type": "journal",
+      "title": "Author Correction: Unraveling the dynamics of ChatGPT adoption and utilization through Structural Equation Modeling",
+      "authors": "Parveen, Phuc, Alghamdi, Hajjej, Obidallah, Alduraywish, Shafiq",
+      "venue": "Scientific Reports",
+      "doi": "10.1038/S41598-024-79470-4",
+      "tags": [],
+      "role": "co-author",
+      "review": true
+    },
+    {
+      "year": 2016,
+      "type": "conference",
+      "title": "Current Landscape of Web Service Discovery: A Typology Based on Five Characteristics",
+      "authors": "Obidallah, Ruhi, Raahemi",
+      "venue": "IEEE/WIC/ACM International Conference on Web Intelligence (WI)",
+      "doi": "10.1109/WI.2016.120",
+      "tags": [],
       "role": "co-author",
       "review": true
     }
